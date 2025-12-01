@@ -13,14 +13,25 @@ export default function StudentVotingView({ studentName, categories, onFinish }:
   const [votes, setVotes] = useState<Vote[]>([]);
   const [isDone, setIsDone] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedNominee, setSelectedNominee] = useState<string>('');
 
   const category = categories[currentCatIndex];
 
-  const handleVote = async (nomineeId: string) => {
+  const handleSelectNominee = (nomineeId: string) => {
+    console.log('Seleccionado:', nomineeId);
+    setSelectedNominee(nomineeId);
+  };
+
+  const handleConfirmVote = async () => {
+    if (!selectedNominee) {
+      alert('Por favor selecciona un nominado');
+      return;
+    }
+
     const newVote: Vote = {
       studentName,
       categoryId: category.id,
-      nomineeId,
+      nomineeId: selectedNominee,
       timestamp: Date.now()
     };
 
@@ -28,6 +39,7 @@ export default function StudentVotingView({ studentName, categories, onFinish }:
     setVotes(updatedVotes);
 
     if (currentCatIndex < categories.length - 1) {
+      setSelectedNominee('');
       setCurrentCatIndex(prev => prev + 1);
     } else {
       setIsSubmitting(true);
@@ -40,6 +52,13 @@ export default function StudentVotingView({ studentName, categories, onFinish }:
       } finally {
         setIsSubmitting(false);
       }
+    }
+  };
+
+  const handleBack = () => {
+    if (currentCatIndex > 0) {
+      setCurrentCatIndex(prev => prev - 1);
+      setSelectedNominee('');
     }
   };
 
@@ -76,27 +95,55 @@ export default function StudentVotingView({ studentName, categories, onFinish }:
         ></div>
       </div>
 
-      <div className="flex-1 flex flex-col items-center max-w-2xl mx-auto w-full">
-        <div className="text-center mb-8">
-          <span className="text-6xl mb-4 block">{category.emoji}</span>
-          <h2 className="text-2xl font-bold text-fun-purple mb-2 uppercase tracking-wide">{category.title}</h2>
-          <p className="text-gray-600 text-lg">{category.description}</p>
-        </div>
+      <div className="text-center mb-8">
+        <span className="text-6xl mb-4 block">{category.emoji}</span>
+        <h2 className="text-2xl font-bold text-fun-purple mb-2 uppercase tracking-wide">{category.title}</h2>
+        <p className="text-gray-600 text-lg">{category.description}</p>
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-          {category.nominees.map(nominee => (
-            <button 
-              key={nominee.id}
-              onClick={() => handleVote(nominee.id)}
-              className="bg-white p-4 rounded-2xl shadow-sm hover:shadow-xl hover:bg-fun-yellow hover:text-white transition transform hover:-translate-y-1 border-2 border-transparent hover:border-white flex items-center space-x-4"
-            >
-              <span className="text-3xl">{nominee.avatar || '👤'}</span>
-              <span className="text-xl font-bold">{nominee.name}</span>
-            </button>
-          ))}
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl mx-auto mb-8">
+        {category.nominees.map(nominee => (
+          <button 
+            key={nominee.id}
+            onClick={() => handleSelectNominee(nominee.id)}
+            className={`p-4 rounded-2xl shadow-sm transition transform hover:-translate-y-1 border-2 flex items-center space-x-4 ${
+              selectedNominee === nominee.id 
+                ? 'bg-fun-yellow text-white border-fun-purple scale-105 shadow-xl' 
+                : 'bg-white hover:shadow-xl hover:bg-fun-yellow hover:text-white border-transparent hover:border-white'
+            }`}
+          >
+            <span className="text-3xl">{nominee.avatar || '👤'}</span>
+            <span className="text-xl font-bold">{nominee.name}</span>
+            {selectedNominee === nominee.id && (
+              <span className="ml-auto text-2xl">✓</span>
+            )}
+          </button>
+        ))}
+      </div>
+
+      <div className="w-full max-w-2xl mx-auto mt-auto space-y-3 pb-8">
+        <button 
+          onClick={handleConfirmVote}
+          disabled={!selectedNominee}
+          className={`w-full py-5 rounded-2xl text-xl font-bold shadow-xl transition-all duration-300 ${
+            selectedNominee 
+              ? 'bg-gradient-to-r from-fun-purple to-fun-pink text-white hover:scale-105 animate-pulse' 
+              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+          }`}
+        >
+          {selectedNominee ? '✓ CONFIRMAR MI VOTO' : '👆 Selecciona un nominado primero'}
+        </button>
         
-        <div className="mt-8 text-gray-400 text-sm">
+        {currentCatIndex > 0 && (
+          <button 
+            onClick={handleBack}
+            className="w-full py-3 bg-gray-200 text-gray-700 rounded-xl text-lg font-semibold hover:bg-gray-300 transition"
+          >
+            ← Volver a la categoría anterior
+          </button>
+        )}
+
+        <div className="text-center text-gray-400 text-sm mt-4">
           Categoría {currentCatIndex + 1} de {categories.length}
         </div>
       </div>
