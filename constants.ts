@@ -2,8 +2,6 @@ import { Nominee, Category } from './types';
 
 export const APP_STORAGE_KEY = 'superlativos-app-data';
 
-
-
 export const AWARDS_NOMINEES: Nominee[] = [
   { id: 'nom_1', name: 'Mono', avatar: '🐵' },
   { id: 'nom_2', name: 'Lucas', avatar: '👤' },
@@ -80,5 +78,12 @@ export const DEFAULT_CATEGORIES: Category[] = [
     description: '¿Quién tiene más compromiso?',
     emoji: '🤝',
     nominees: getNomineesByName('Lucas', 'Cande', 'Maya')
+  },
+  {
+    id: 'cat_14',
+    title: 'Guia mas zorra',
+    description: '¿Quién es la guia mas Infi...?',
+    emoji: '👹',
+    nominees: getNomineesByName('Selu')
   }
 ];
