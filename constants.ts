@@ -16,6 +16,10 @@ export const AWARDS_NOMINEES: Nominee[] = [
   { id: 'nom_11', name: 'Mateo', avatar: '👤' },
   { id: 'nom_12', name: 'Thiago', avatar: '👤' },
   { id: 'nom_13', name: 'Mati', avatar: '👤' },
+  { id: 'nom_14', name: 'Bauti', avatar: '👤' },
+  { id: 'nom_15', name: 'Cande', avatar: '👤' },
+  { id: 'nom_16', name: 'Maya', avatar: '👤' },
+  { id: 'nom_17', name: 'Selu', avatar: '👤' }
 ];
 
 const getNomineesByName = (...names: string[]): Nominee[] => {
