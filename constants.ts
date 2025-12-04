@@ -32,14 +32,14 @@ export const DEFAULT_CATEGORIES: Category[] = [
     title: 'Premio Revelación',
     description: '¿Quién ha sido la gran revelación?',
     emoji: '⭐',
-    nominees: getNomineesByName('Mono', 'Lucas')
+    nominees: getNomineesByName('Mono', 'Lucas','Mateo')
   },
   {
     id: 'cat_7',
     title: 'Premio Mujer/Hombre que Resuelve',
     description: '¿Quién siempre resuelve todo?',
     emoji: '🛠️',
-    nominees: getNomineesByName('Carme','Luca','Mia')
+    nominees: getNomineesByName('Carme','Luca','Mia','Cande')
   },
   {
     id: 'cat_8',
