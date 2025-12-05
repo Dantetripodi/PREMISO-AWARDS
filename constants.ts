@@ -3,17 +3,17 @@ import { Nominee, Category } from './types';
 export const APP_STORAGE_KEY = 'superlativos-app-data';
 
 export const AWARDS_NOMINEES: Nominee[] = [
-  { id: 'nom_1', name: 'Mono', avatar: '🐵' },
-  { id: 'nom_2', name: 'Lucas', avatar: '👤' },
-  { id: 'nom_3', name: 'Carme', avatar: '👤' },
-  { id: 'nom_4', name: 'Ludmi', avatar: '👤' },
-  { id: 'nom_5', name: 'Mia', avatar: '👤' },
-  { id: 'nom_6', name: 'Mora', avatar: '👤' },
-  { id: 'nom_7', name: 'Rama', avatar: '👤' },
-  { id: 'nom_8', name: 'Lucho', avatar: '👤' },
-  { id: 'nom_9', name: 'Luca', avatar: '👤' },
+  { id: 'nom_1', name:  'Mono', avatar: '🐵' },
+  { id: 'nom_2', name:  'Lucas', avatar: '👤' },
+  { id: 'nom_3', name:  'Carme', avatar: '👤' },
+  { id: 'nom_4', name:  'Ludmi', avatar: '👤' },
+  { id: 'nom_5', name:  'Mia', avatar: '👤' },
+  { id: 'nom_6', name:  'Mora', avatar: '👤' },
+  { id: 'nom_7', name:  'Rama', avatar: '👤' },
+  { id: 'nom_8', name:  'Lucho', avatar: '👤' },
+  { id: 'nom_9', name:  'Luca', avatar: '👤' },
   { id: 'nom_10', name: 'Dome', avatar: '👤' },
-  { id: 'nom_11', name: 'Mateo', avatar: '👤' },
+  { id: 'nom_11', name: 'Mateo Angeles', avatar: '👤' },
   { id: 'nom_12', name: 'Thiago', avatar: '👤' },
   { id: 'nom_13', name: 'Mati', avatar: '👤' },
   { id: 'nom_14', name: 'Bauti', avatar: '👤' },
@@ -27,6 +27,10 @@ export const AWARDS_NOMINEES: Nominee[] = [
   { id: 'nom_22', name: 'Brune', avatar: '👤' },
   { id: 'nom_23', name: 'Fede', avatar: '👤' },
   { id: 'nom_24', name: 'Cuba', avatar: '👤' },
+  { id: 'nom_25', name: 'Mateo culon', avatar: '👤' },
+  { id: 'nom_26', name: 'Matias', avatar: '👤' },
+  { id: 'nom_27', name: 'Joaco', avatar: '👤' }
+
 
 ];
 
@@ -96,7 +100,7 @@ export const DEFAULT_CATEGORIES: Category[] = [
     title: 'Premio al mas Nazi',
     description: '¿Quién es el  más NAZI?',
     emoji: '🤝',
-    nominees: getNomineesByName('Fede','Carmen')
+    nominees: getNomineesByName('Fede','Carme')
   },
   {
     id: 'cat_10',
